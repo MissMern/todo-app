@@ -15,7 +15,10 @@
     <form action="{{ route('todos.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <input type="text" name="title" class="form-control" placeholder="What do you wanna do?" required>
+            <input type="text" name="title" class="form-control" placeholder="What do you wanna do?">
+            @error('title')
+                <div class="alert alert-danger mt-1">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">Add To-Do</button>
     </form>
