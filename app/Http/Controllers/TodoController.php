@@ -76,5 +76,19 @@ class TodoController extends Controller
         $todo->delete();
 
         return redirect()->route('dashboard')->with('success', 'To-Do Deleted Successfully');
-    }
+    }  
+    // Toggle the status of a to-do
+    public function toggleStatus(Todo $todo)
+    {
+        if ($todo->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $todo->update([
+            'completed' => !$todo->completed,
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'To-Do Status Updated Successfully');
+    } 
+    
 }

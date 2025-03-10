@@ -10,7 +10,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return redirect()->route('dashboard');
 })->name('home');
-
+Route::patch('/todos/{todo}/toggle', [TodoController::class, 'toggleStatus'])->name('todos.toggle');
 // Authentication routes (Login, Register, Logout)
 require __DIR__.'/auth.php';
 
